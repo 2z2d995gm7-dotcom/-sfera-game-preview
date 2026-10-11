@@ -3,141 +3,51 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
-  <meta name="theme-color" content="#080808" />
-  <meta name="color-scheme" content="dark" />
-  <title>Сфера · Тренер смотрит</title>
+  <meta name="theme-color" content="#f3eee5" />
+  <meta name="color-scheme" content="light" />
+  <title>Сфера · Тренер смотрит V2</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./game.css" />
+  <link rel="stylesheet" href="./game.css?v=2.0.0" />
   <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
 </head>
 <body>
   <div class="game-shell">
-    <header class="game-topbar">
-      <a class="back-link" href="./" aria-label="Назад в приложение">←</a>
-      <div class="game-brand">
-        <span>СФЕРА°</span>
-        <strong>ТРЕНЕР СМОТРИТ</strong>
-      </div>
-      <button id="soundButton" class="icon-button" type="button" aria-label="Звук">♪</button>
+    <header class="topbar">
+      <a class="round-button" href="./" aria-label="Назад">←</a>
+      <div class="brand"><strong>СФЕРА°</strong><span>ARCADE 01 · V2</span></div>
+      <button id="soundButton" class="round-button" type="button" aria-label="Звук">♪</button>
     </header>
-
-    <main class="game-main">
-      <section class="hud" aria-label="Игровые показатели">
-        <div class="hud-card"><span>STYLE</span><strong id="scoreValue">0</strong></div>
-        <div class="hud-card hud-card--combo"><span>COMBO</span><strong id="comboValue">×0</strong></div>
-        <div class="hud-card hud-card--time"><span>TIME</span><strong id="timeValue">90</strong></div>
-      </section>
-
-      <section class="court-card">
-        <div class="court" id="court">
-          <div class="court-lines" aria-hidden="true"></div>
-          <div class="hoop hoop--left" aria-hidden="true"><i></i></div>
-          <div class="hoop hoop--right" aria-hidden="true"><i></i></div>
-
-          <div id="taskBubble" class="task-bubble" style="--task:#4aa8ff">
-            <small>ЗАДАНИЕ</small>
-            <strong id="taskIcon">↔</strong>
-            <span id="taskName">ДРИБЛИНГ</span>
-          </div>
-
-          <div id="trainer" class="trainer" data-look="away">
-            <div class="trainer-head"><i class="trainer-eye trainer-eye--left"></i><i class="trainer-eye trainer-eye--right"></i></div>
-            <div class="trainer-body"><span>С</span></div>
-            <div class="whistle">•</div>
-            <div id="gaze" class="gaze" aria-hidden="true"></div>
-          </div>
-
-          <div class="student npc npc--one"><div class="student-head"></div><div class="student-body">1</div></div>
-          <div class="student npc npc--two"><div class="student-head"></div><div class="student-body">2</div></div>
-          <div class="student npc npc--three"><div class="student-head"></div><div class="student-body">3</div></div>
-          <div class="student npc npc--four"><div class="student-head"></div><div class="student-body">4</div></div>
-
-          <div id="player" class="student player">
-            <div class="status-ring"></div>
-            <div class="student-head"></div>
-            <div class="student-body">ТЫ</div>
-            <div id="playerBall" class="player-ball"></div>
-          </div>
-
-          <div id="reaction" class="reaction" aria-live="polite"></div>
-          <div id="warning" class="warning"><span>⚠</span><strong>ТРЕНЕР ПОВОРАЧИВАЕТСЯ</strong></div>
-        </div>
-
-        <div class="suspicion-row">
-          <div>
-            <span>ПАЛЕВО</span>
-            <small id="suspicionCopy">чисто</small>
-          </div>
-          <div id="suspicionDots" class="suspicion-dots" aria-label="Палево 0 из 5">
-            <i></i><i></i><i></i><i></i><i></i>
-          </div>
-        </div>
-      </section>
-
-      <section id="modePanel" class="mode-panel mode-panel--freestyle">
-        <div class="mode-head">
-          <div>
-            <span id="modeKicker">ТРЕНЕР НЕ СМОТРИТ</span>
-            <strong id="modeTitle">НАБИВАЙ STYLE</strong>
-          </div>
-          <div id="modePill" class="mode-pill">FREESTYLE</div>
-        </div>
-
-        <div id="comboPrompt" class="combo-prompt">
-          <span>КОМБО</span>
-          <div id="comboSequence" class="combo-sequence"></div>
-        </div>
-
-        <div class="freestyle-actions" id="freestyleActions">
-          <button type="button" data-trick="cross"><span>A</span><strong>CROSS</strong><small>+50</small></button>
-          <button type="button" data-trick="spin"><span>B</span><strong>SPIN</strong><small>+140</small></button>
-          <button type="button" data-trick="special"><span>C</span><strong>SPECIAL</strong><small>+360</small></button>
-        </div>
-
-        <div class="training-actions" id="trainingActions">
-          <button type="button" data-task="dribble"><span>↔</span><strong>ДРИБЛИНГ</strong></button>
-          <button type="button" data-task="pass"><span>⇄</span><strong>ПАС</strong></button>
-          <button type="button" data-task="close"><span>◉</span><strong>БЛИЖНИЙ</strong></button>
-          <button type="button" data-task="long"><span>◎</span><strong>ДАЛЬНИЙ</strong></button>
-        </div>
+    <section class="hud" aria-label="Игровые показатели">
+      <div class="hud-item"><span>STYLE</span><strong id="scoreValue">0</strong></div>
+      <div class="hud-task" id="taskChip" style="--task:#3287e8"><span id="taskIcon">●</span><strong id="taskName">ДРИБЛИНГ</strong></div>
+      <div class="hud-item hud-time"><span>TIME</span><strong id="timeValue">90</strong></div>
+    </section>
+    <main class="game-stage">
+      <section id="court" class="court" data-task="dribble">
+        <div class="gym-wall" aria-hidden="true"><div class="ceiling-light light-a"></div><div class="ceiling-light light-b"></div><div class="ceiling-light light-c"></div><div class="window-strip"><i></i><i></i><i></i><i></i></div><div class="wall-logo">СФЕРА<span>ШКОЛА ЛЮБВИ К БАСКЕТБОЛУ</span></div><div class="scoreboard"><small>TRAINING</small><b id="wallScore">01</b><span>СФЕРА</span></div><div class="bench"><i></i><i></i><i></i></div><div class="wall-ball ball-a"></div><div class="wall-ball ball-b"></div></div>
+        <div class="floor-lines" aria-hidden="true"><div class="center-circle"></div><div class="paint paint-left"></div><div class="paint paint-right"></div></div>
+        <div class="basket basket-left" aria-hidden="true"><i class="board"></i><i class="rim"></i><i class="net"></i></div><div class="basket basket-right" aria-hidden="true"><i class="board"></i><i class="rim"></i><i class="net"></i></div>
+        <div id="visionCone" class="vision-cone" aria-hidden="true"></div>
+        <div id="trainer" class="trainer" aria-label="Тренер"><div class="trainer-shadow"></div><div class="trainer-rig"><div class="trainer-head"><i class="trainer-hair"></i><i class="trainer-ear"></i><i class="trainer-face"></i></div><div class="trainer-neck"></div><div class="trainer-torso"><span>COACH</span></div><div class="trainer-arm arm-l"></div><div class="trainer-arm arm-r"></div><div class="trainer-leg leg-l"></div><div class="trainer-leg leg-r"></div><div class="whistle">•</div></div><div id="coachBubble" class="coach-bubble">РАБОТАЕМ!</div></div>
+        <div class="athlete npc npc-1" style="--jersey:#3a78d4;--skin:#d7a17b;--shot-x:-62px;--shot-y:-82px"><div class="athlete-rig"><div class="head"><i class="hair"></i><i class="face"></i></div><div class="arm arm-l"></div><div class="arm arm-r"></div><div class="jersey"><b>7</b></div><div class="shorts"></div><div class="leg leg-l"></div><div class="leg leg-r"></div><div class="shoe shoe-l"></div><div class="shoe shoe-r"></div><div class="ball"></div></div></div>
+        <div class="athlete npc npc-2" style="--jersey:#ef8054;--skin:#a96f54;--shot-x:-74px;--shot-y:-68px"><div class="athlete-rig"><div class="head"><i class="hair hair-curly"></i><i class="face"></i></div><div class="arm arm-l"></div><div class="arm arm-r"></div><div class="jersey"><b>14</b></div><div class="shorts"></div><div class="leg leg-l"></div><div class="leg leg-r"></div><div class="shoe shoe-l"></div><div class="shoe shoe-r"></div><div class="ball"></div></div></div>
+        <div class="athlete npc npc-3" style="--jersey:#725ac1;--skin:#edbf98;--shot-x:70px;--shot-y:-86px"><div class="athlete-rig"><div class="head"><i class="hair hair-long"></i><i class="face"></i></div><div class="arm arm-l"></div><div class="arm arm-r"></div><div class="jersey"><b>23</b></div><div class="shorts"></div><div class="leg leg-l"></div><div class="leg leg-r"></div><div class="shoe shoe-l"></div><div class="shoe shoe-r"></div><div class="ball"></div></div></div>
+        <div class="athlete npc npc-4" style="--jersey:#319c76;--skin:#c88d68;--shot-x:74px;--shot-y:-62px"><div class="athlete-rig"><div class="head"><i class="hair hair-crop"></i><i class="face"></i></div><div class="arm arm-l"></div><div class="arm arm-r"></div><div class="jersey"><b>31</b></div><div class="shorts"></div><div class="leg leg-l"></div><div class="leg leg-r"></div><div class="shoe shoe-l"></div><div class="shoe shoe-r"></div><div class="ball"></div></div></div>
+        <div id="player" class="athlete player" style="--jersey:#171717;--skin:#d5a078;--shot-x:92px;--shot-y:-106px"><div class="player-ring"></div><div class="athlete-rig"><div class="head"><i class="hair hair-crop"></i><i class="face"></i></div><div class="arm arm-l"></div><div class="arm arm-r"></div><div class="jersey"><b>YOU</b></div><div class="shorts"></div><div class="leg leg-l"></div><div class="leg leg-r"></div><div class="shoe shoe-l"></div><div class="shoe shoe-r"></div><div class="ball"></div></div></div>
+        <div id="reaction" class="reaction" aria-live="polite"></div><div class="danger-meter"><span>ПАЛЕВО</span><div id="suspicionDots"><i></i><i></i><i></i><i></i><i></i></div></div>
       </section>
     </main>
-  </div>
-
-  <div id="startOverlay" class="overlay overlay--visible">
-    <section class="overlay-card intro-card">
-      <div class="mini-label">СФЕРА · ARCADE 01</div>
-      <h1>Тренер<br><em>смотрит</em></h1>
-      <p>Отвернулся — набивай STYLE. Повернулся — мгновенно выполняй текущее задание. Пять раз спалился — сегодня без игровой части.</p>
-      <div class="rule-grid">
-        <div><strong>01</strong><span>Следи за взглядом</span></div>
-        <div><strong>02</strong><span>Помни задание</span></div>
-        <div><strong>03</strong><span>Рискуй ради комбо</span></div>
-      </div>
-      <button id="startButton" class="start-button" type="button">НАЧАТЬ ТРЕНИРОВКУ</button>
-      <small class="intro-note">Раунд · 90 секунд</small>
+    <section id="controls" class="controls controls-style">
+      <div class="control-head"><div><span id="modeKicker">ТРЕНЕР НЕ СМОТРИТ</span><strong id="modeTitle">БЫСТРО НАБЕЙ КОМБО</strong></div><div class="combo-stat"><span>COMBO</span><strong id="comboValue">×0</strong></div></div>
+      <div class="sequence-row"><div id="comboSequence" class="combo-sequence"></div><div id="speedLabel" class="speed-label">готов</div></div>
+      <div id="styleControls" class="button-grid style-grid"><button type="button" data-style="1"><span>1</span><small>CROSS</small></button><button type="button" data-style="2"><span>2</span><small>SPIN</small></button><button type="button" data-style="3"><span>3</span><small>BEHIND</small></button><button type="button" data-style="4"><span>4</span><small>SPECIAL</small></button></div>
+      <div id="taskControls" class="button-grid task-grid"><button type="button" data-task="dribble"><span>●</span><strong>ДРИБЛИНГ</strong></button><button type="button" data-task="shot"><span>⌒</span><strong>БРОСОК</strong></button><button type="button" data-task="jump"><span>↑</span><strong>ПРЫЖКИ</strong></button></div>
     </section>
   </div>
-
-  <div id="resultOverlay" class="overlay">
-    <section class="overlay-card result-card">
-      <div class="mini-label" id="resultKicker">ТРЕНИРОВКА ОКОНЧЕНА</div>
-      <div id="resultRank" class="result-rank">S</div>
-      <h2 id="resultTitle">ТРЕНЕР НИЧЕГО НЕ ЗАПОДОЗРИЛ</h2>
-      <div class="result-stats">
-        <div><span>STYLE</span><strong id="resultScore">0</strong></div>
-        <div><span>MAX COMBO</span><strong id="resultCombo">×0</strong></div>
-        <div><span>СПАЛИЛСЯ</span><strong id="resultCaught">0</strong></div>
-        <div><span>ЗАДАНИЯ</span><strong id="resultTasks">0/0</strong></div>
-      </div>
-      <div id="bestScore" class="best-score"></div>
-      <button id="restartButton" class="start-button" type="button">ЕЩЁ ТРЕНИРОВКУ</button>
-      <a class="result-back" href="./">ВЕРНУТЬСЯ В СФЕРУ</a>
-    </section>
-  </div>
-
-  <script src="./game.js"></script>
+  <div id="startOverlay" class="overlay overlay-visible"><section class="overlay-card intro-card"><div class="mini-label">СФЕРА · ARCADE 01 · V2</div><h1>Тренер<br><em>смотрит</em></h1><p>Следи за сектором обзора. Пока тренер отвернулся — быстро набирай комбинацию из пяти движений. Посмотрел на тебя — мгновенно делай текущее упражнение.</p><div class="rule-grid"><div><strong>01</strong><span>Читай движение тренера</span></div><div><strong>02</strong><span>5 движений = STYLE</span></div><div><strong>03</strong><span>5 раз спалился = скамейка</span></div></div><button id="startButton" class="start-button" type="button">НАЧАТЬ ТРЕНИРОВКУ</button><small>90 секунд · звук включён</small></section></div>
+  <div id="resultOverlay" class="overlay"><section class="overlay-card result-card"><div class="mini-label" id="resultKicker">ТРЕНИРОВКА ОКОНЧЕНА</div><div id="resultRank" class="result-rank">S</div><h2 id="resultTitle">ЧИСТАЯ РАБОТА</h2><div class="result-stats"><div><span>STYLE</span><strong id="resultScore">0</strong></div><div><span>MAX COMBO</span><strong id="resultCombo">×0</strong></div><div><span>СПАЛИЛСЯ</span><strong id="resultCaught">0</strong></div><div><span>ПРОВЕРКИ</span><strong id="resultTasks">0/0</strong></div></div><div id="bestScore" class="best-score"></div><button id="restartButton" class="start-button" type="button">ЕЩЁ ТРЕНИРОВКУ</button></section></div>
+  <script src="./game.js?v=2.0.0"></script>
 </body>
 </html>
